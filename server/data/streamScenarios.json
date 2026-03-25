@@ -1,0 +1,35 @@
+{
+  "회의록 정리해줘": {
+    "events": [
+      { "type": "text_delta", "content": "회의록을 정리하고 있습니다" },
+      { "type": "text_delta", "content": "... 주요 안건을 분석 중입니다." },
+      { "type": "text_delta", "content": " 프리뷰에서 확인해주세요." },
+      { "type": "artifact_delta", "content": "# 회의록\n\n" },
+      { "type": "artifact_delta", "content": "## 참석자\n- 팀원 A\n- 팀원 B\n\n" },
+      { "type": "artifact_delta", "content": "## 논의 사항\n1. 프로젝트 일정 검토\n2. 기술 스택 결정\n\n", "language": "markdown" },
+      { "type": "artifact_delta", "content": "## 액션 아이템\n- [ ] 일정표 공유 (금요일까지)\n- [ ] 기술 검토 문서 작성" },
+      { "type": "done", "title": "회의록 정리" }
+    ],
+    "delayMs": 150
+  },
+  "코드 리뷰 해줘": {
+    "events": [
+      { "type": "text_delta", "content": "코드를 분석하고 있습니다" },
+      { "type": "text_delta", "content": "... 개선 사항을 정리했습니다." },
+      { "type": "artifact_delta", "content": "```typescript\n// Before: 개선 전\n" },
+      { "type": "artifact_delta", "content": "function fetchData(url: string) {\n  return fetch(url).then(r => r.json());\n}\n\n" },
+      { "type": "artifact_delta", "content": "// After: 개선 후\nasync function fetchData<T>(url: string): Promise<T> {\n  const res = await fetch(url);\n  if (!res.ok) throw new Error(`HTTP ${res.status}`);\n  return res.json();\n}\n```", "language": "typescript" },
+      { "type": "done", "title": "코드 리뷰" }
+    ],
+    "delayMs": 120
+  },
+  "_default": {
+    "events": [
+      { "type": "text_delta", "content": "네, " },
+      { "type": "text_delta", "content": "말씀하신 내용을 " },
+      { "type": "text_delta", "content": "확인했습니다. 도움이 필요하시면 말씀해주세요!" },
+      { "type": "done" }
+    ],
+    "delayMs": 100
+  }
+}

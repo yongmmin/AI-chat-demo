@@ -1,0 +1,19 @@
+{
+  "name": "ai-chat-server",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "tsx index.ts",
+    "test": "NODE_ENV=test vitest run"
+  },
+  "dependencies": {
+    "@hono/node-server": "^1.13.0",
+    "dotenv": "^16.4.0",
+    "hono": "^4.7.0"
+  },
+  "devDependencies": {
+    "tsx": "^4.19.0",
+    "typescript": "~5.7.2",
+    "vitest": "^3.0.0"
+  }
+}

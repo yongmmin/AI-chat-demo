@@ -1,0 +1,232 @@
+[
+  {
+    "id": "session-1",
+    "title": "프로젝트 회의록 정리",
+    "created_at": "2025-01-15T09:30:00Z",
+    "messages": [
+      {
+        "id": "msg-1-1",
+        "role": "user",
+        "content": "오늘 스프린트 회의 내용을 정리해줘. 참석자는 김팀장, 이개발, 박디자인이야.",
+        "createdAt": "2025-01-15T09:30:00Z"
+      },
+      {
+        "id": "msg-1-2",
+        "role": "assistant",
+        "content": "네, 스프린트 회의록을 정리했습니다. 오른쪽 프리뷰에서 확인해주세요.",
+        "artifact": {
+          "content": "# 스프린트 회의록\n\n**날짜**: 2025-01-15\n**참석자**: 김팀장, 이개발, 박디자인\n\n## 논의 사항\n\n1. **로그인 기능 개선** — 이개발\n   - OAuth 2.0 연동 완료\n   - QA 테스트 필요\n\n2. **디자인 시스템 업데이트** — 박디자인\n   - 버튼 컴포넌트 리뉴얼\n   - 다크모드 팔레트 정의\n\n## 액션 아이템\n\n- [ ] 로그인 QA 테스트 (1/17까지)\n- [ ] 디자인 토큰 문서화 (1/19까지)",
+          "language": "markdown"
+        },
+        "createdAt": "2025-01-15T09:31:00Z"
+      }
+    ]
+  },
+  {
+    "id": "session-2",
+    "title": null,
+    "created_at": "2025-01-14T14:20:00Z",
+    "messages": [
+      {
+        "id": "msg-2-1",
+        "role": "user",
+        "content": "React useEffect 클린업 패턴을 설명해줘",
+        "createdAt": "2025-01-14T14:20:00Z"
+      },
+      {
+        "id": "msg-2-2",
+        "role": "assistant",
+        "content": "useEffect 클린업은 컴포넌트 언마운트나 의존성 변경 시 실행됩니다. 코드 예시를 프리뷰에 준비했습니다.",
+        "artifact": {
+          "content": "```tsx\nuseEffect(() => {\n  const controller = new AbortController();\n  \n  fetch('/api/data', { signal: controller.signal })\n    .then(res => res.json())\n    .then(setData)\n    .catch(err => {\n      if (err.name !== 'AbortError') console.error(err);\n    });\n\n  return () => controller.abort();\n}, []);\n```",
+          "language": "tsx"
+        },
+        "createdAt": "2025-01-14T14:21:00Z"
+      }
+    ]
+  },
+  {
+    "id": "session-3",
+    "title": "이메일 초안 작성",
+    "created_at": "2025-01-14T10:00:00Z",
+    "messages": [
+      {
+        "id": "msg-3-1",
+        "role": "user",
+        "content": "클라이언트에게 프로젝트 일정 지연 안내 이메일을 작성해줘. 정중하게 부탁해.",
+        "createdAt": "2025-01-14T10:00:00Z"
+      },
+      {
+        "id": "msg-3-2",
+        "role": "assistant",
+        "content": "정중한 톤으로 일정 지연 안내 이메일을 작성했습니다.",
+        "artifact": {
+          "content": "제목: [프로젝트명] 일정 조정 안내\n\n안녕하세요, OOO님.\n\n프로젝트 진행 상황을 공유드리고자 연락드립니다.\n\n현재 기술적 검토 과정에서 추가 확인이 필요한 사항이 발견되어,\n당초 예정된 일정보다 약 1주일 정도 조정이 필요한 상황입니다.\n\n수정된 일정:\n- 1차 검수: 1월 22일 → 1월 29일\n- 최종 납품: 1월 31일 → 2월 7일\n\n품질을 최우선으로 고려한 결정이며,\n일정 내 완성도 높은 결과물을 전달드리겠습니다.\n\n불편을 드려 죄송합니다.\n감사합니다.",
+          "language": "markdown"
+        },
+        "createdAt": "2025-01-14T10:01:00Z"
+      }
+    ]
+  },
+  {
+    "id": "session-4",
+    "title": "Python 코드 리뷰",
+    "created_at": "2025-01-13T16:45:00Z",
+    "messages": [
+      {
+        "id": "msg-4-1",
+        "role": "user",
+        "content": "이 파이썬 코드 리뷰해줘:\ndef get_users(db, active=True):\n  users = db.query('SELECT * FROM users')\n  result = []\n  for u in users:\n    if u.active == active:\n      result.append(u)\n  return result",
+        "createdAt": "2025-01-13T16:45:00Z"
+      },
+      {
+        "id": "msg-4-2",
+        "role": "assistant",
+        "content": "몇 가지 개선 포인트가 있습니다. SQL 인젝션 위험, 필터링 위치, 리스트 컴프리헨션 활용을 개선한 코드를 프리뷰에서 확인하세요.",
+        "artifact": {
+          "content": "```python\nfrom typing import List\nfrom sqlalchemy.orm import Session\nfrom models import User\n\ndef get_users(db: Session, *, active: bool = True) -> List[User]:\n    \"\"\"활성/비활성 사용자 목록을 반환합니다.\"\"\"\n    return db.query(User).filter(User.active == active).all()\n```\n\n**개선 사항:**\n1. SQL 인젝션 방지 (ORM 사용)\n2. DB 레벨 필터링 (성능)\n3. 타입 힌트 추가\n4. keyword-only 인자로 실수 방지",
+          "language": "python"
+        },
+        "createdAt": "2025-01-13T16:46:00Z"
+      }
+    ]
+  },
+  {
+    "id": "session-5",
+    "title": null,
+    "created_at": "2025-01-13T11:30:00Z",
+    "messages": [
+      {
+        "id": "msg-5-1",
+        "role": "user",
+        "content": "안녕! 오늘 뭐 도와줄 수 있어?",
+        "createdAt": "2025-01-13T11:30:00Z"
+      },
+      {
+        "id": "msg-5-2",
+        "role": "assistant",
+        "content": "안녕하세요! 다양한 작업을 도와드릴 수 있습니다. 회의록 정리, 이메일 작성, 코드 리뷰, 데이터 분석, 번역, 브레인스토밍 등 어떤 작업이든 말씀해주세요.",
+        "createdAt": "2025-01-13T11:30:30Z"
+      }
+    ]
+  },
+  {
+    "id": "session-6",
+    "title": "데이터 분석 요약",
+    "created_at": "2025-01-12T15:00:00Z",
+    "messages": [
+      {
+        "id": "msg-6-1",
+        "role": "user",
+        "content": "이번 달 MAU 데이터를 요약해줘. 1월: 45000, 2월: 52000, 3월: 48000",
+        "createdAt": "2025-01-12T15:00:00Z"
+      },
+      {
+        "id": "msg-6-2",
+        "role": "assistant",
+        "content": "MAU 데이터를 분석했습니다. 요약 리포트를 프리뷰에서 확인하세요.",
+        "artifact": {
+          "content": "# MAU 분석 리포트\n\n| 월 | MAU | 전월 대비 |\n|---|-----|----------|\n| 1월 | 45,000 | - |\n| 2월 | 52,000 | +15.6% |\n| 3월 | 48,000 | -7.7% |\n\n## 핵심 인사이트\n\n- **평균 MAU**: 48,333명\n- **최고**: 2월 (52,000명)\n- **3월 감소 원인 분석 필요** — 시즌 요인 또는 이탈 증가 확인 권장",
+          "language": "markdown"
+        },
+        "createdAt": "2025-01-12T15:01:00Z"
+      }
+    ]
+  },
+  {
+    "id": "session-7",
+    "title": null,
+    "created_at": "2025-01-12T09:15:00Z",
+    "messages": [
+      {
+        "id": "msg-7-1",
+        "role": "user",
+        "content": "REST API 설계 베스트 프랙티스를 알려줘",
+        "createdAt": "2025-01-12T09:15:00Z"
+      },
+      {
+        "id": "msg-7-2",
+        "role": "assistant",
+        "content": "REST API 설계의 핵심 원칙들을 정리해드리겠습니다.\n\n1. **리소스 중심 URL**: `/users/:id` (O), `/getUser` (X)\n2. **HTTP 메서드 활용**: GET(조회), POST(생성), PUT(전체수정), PATCH(부분수정), DELETE(삭제)\n3. **적절한 상태 코드**: 200(성공), 201(생성), 400(잘못된 요청), 404(없음), 500(서버 에러)\n4. **페이지네이션**: `?page=1&limit=20` — 대량 데이터 필수\n5. **버전 관리**: `/api/v1/users` 또는 헤더 기반",
+        "createdAt": "2025-01-12T09:16:00Z"
+      }
+    ]
+  },
+  {
+    "id": "session-8",
+    "title": "번역 요청",
+    "created_at": "2025-01-11T13:00:00Z",
+    "messages": [
+      {
+        "id": "msg-8-1",
+        "role": "user",
+        "content": "이 텍스트를 영어로 번역해줘: '우리 팀은 사용자 경험을 최우선으로 생각하며, 지속적인 개선을 추구합니다.'",
+        "createdAt": "2025-01-11T13:00:00Z"
+      },
+      {
+        "id": "msg-8-2",
+        "role": "assistant",
+        "content": "번역 결과입니다:\n\n\"Our team prioritizes user experience above all else and pursues continuous improvement.\"",
+        "createdAt": "2025-01-11T13:00:30Z"
+      },
+      {
+        "id": "msg-8-3",
+        "role": "user",
+        "content": "좀 더 공식적인 톤으로 바꿔줘",
+        "createdAt": "2025-01-11T13:01:00Z"
+      },
+      {
+        "id": "msg-8-4",
+        "role": "assistant",
+        "content": "공식적인 톤으로 수정했습니다:\n\n\"Our team places the highest priority on user experience and is committed to driving continuous improvement across all aspects of our product.\"",
+        "createdAt": "2025-01-11T13:01:30Z"
+      }
+    ]
+  },
+  {
+    "id": "session-9",
+    "title": "TypeScript 유틸 함수",
+    "created_at": "2025-01-10T17:20:00Z",
+    "messages": [
+      {
+        "id": "msg-9-1",
+        "role": "user",
+        "content": "배열에서 중복을 제거하면서 순서를 유지하는 TypeScript 유틸 함수 만들어줘",
+        "createdAt": "2025-01-10T17:20:00Z"
+      },
+      {
+        "id": "msg-9-2",
+        "role": "assistant",
+        "content": "제네릭을 활용한 유틸 함수를 작성했습니다. 커스텀 키 추출 함수도 지원합니다.",
+        "artifact": {
+          "content": "```typescript\n/**\n * 배열에서 중복을 제거하면서 원래 순서를 유지합니다.\n * @param arr - 입력 배열\n * @param keyFn - 중복 판별 키 추출 함수 (기본: identity)\n */\nexport function uniqueBy<T>(\n  arr: T[],\n  keyFn: (item: T) => unknown = (item) => item,\n): T[] {\n  const seen = new Set<unknown>();\n  return arr.filter((item) => {\n    const key = keyFn(item);\n    if (seen.has(key)) return false;\n    seen.add(key);\n    return true;\n  });\n}\n\n// 사용 예시\nconst numbers = [1, 2, 2, 3, 1, 4];\nuniqueBy(numbers); // [1, 2, 3, 4]\n\nconst users = [\n  { id: 1, name: 'Alice' },\n  { id: 2, name: 'Bob' },\n  { id: 1, name: 'Alice (dup)' },\n];\nuniqueBy(users, u => u.id); // [{ id: 1, ... }, { id: 2, ... }]\n```",
+          "language": "typescript"
+        },
+        "createdAt": "2025-01-10T17:21:00Z"
+      }
+    ]
+  },
+  {
+    "id": "session-10",
+    "title": null,
+    "created_at": "2025-01-10T08:00:00Z",
+    "messages": [
+      {
+        "id": "msg-10-1",
+        "role": "user",
+        "content": "주간 할 일 목록을 브레인스토밍해줘. 나는 프론트엔드 개발자야.",
+        "createdAt": "2025-01-10T08:00:00Z"
+      },
+      {
+        "id": "msg-10-2",
+        "role": "assistant",
+        "content": "프론트엔드 개발자를 위한 주간 할 일을 정리했습니다!",
+        "artifact": {
+          "content": "# 주간 할 일 목록 (FE 개발자)\n\n## 월요일 — 주간 계획\n- [ ] 스프린트 보드 확인 및 태스크 정리\n- [ ] 지난주 PR 리뷰 완료\n\n## 화~수요일 — 핵심 개발\n- [ ] 피쳐 브랜치 작업\n- [ ] 컴포넌트 유닛 테스트 작성\n- [ ] 디자인 리뷰 반영\n\n## 목요일 — 품질\n- [ ] 크로스 브라우저 테스트\n- [ ] 접근성 검수 (Lighthouse)\n- [ ] 번들 사이즈 점검\n\n## 금요일 — 정리\n- [ ] 코드 리뷰 요청 및 피드백 반영\n- [ ] 기술 블로그 초안 또는 TIL 작성\n- [ ] 다음 주 예상 작업 메모",
+          "language": "markdown"
+        },
+        "createdAt": "2025-01-10T08:01:00Z"
+      }
+    ]
+  }
+]

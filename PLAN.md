@@ -1,11 +1,4 @@
-# AI Chat Frontend - Implementation Plan
-
-## 구현 기준 (우선순위 순)
-1. 테스트 통과
-2. 에러 처리
-3. 코드 품질
-4. 커밋 히스토리
-5. 스타일링
+# AI Chat
 
 ---
 

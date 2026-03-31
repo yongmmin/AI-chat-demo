@@ -6,6 +6,26 @@ AI 챗봇과 아티팩트 프리뷰를 갖춘 채팅 인터페이스입니다.
 
 ---
 
+## 샘플 화면
+
+### 홈 화면
+
+추천 프롬프트로 바로 대화를 시작할 수 있는 진입 화면입니다.
+
+<p align="center">
+  <img src="./docs/images/chat-home-sample.png" alt="AI Chat 홈 화면 샘플" />
+</p>
+
+### 채팅 + 아티팩트 프리뷰
+
+왼쪽 채팅과 오른쪽 프리뷰를 동시에 사용하는 메인 세션 화면입니다.
+
+<p align="center">
+  <img src="./docs/images/chat-session-sample.png" alt="AI Chat 세션 화면 샘플" />
+</p>
+
+---
+
 ## 시작하기
 
 ```bash
